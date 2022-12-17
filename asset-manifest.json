@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/full-stack-todo-list/static/css/main.ea7c98fa.css",
+    "main.js": "/full-stack-todo-list/static/js/main.d3b3e249.js",
+    "index.html": "/full-stack-todo-list/index.html",
+    "main.ea7c98fa.css.map": "/full-stack-todo-list/static/css/main.ea7c98fa.css.map",
+    "main.d3b3e249.js.map": "/full-stack-todo-list/static/js/main.d3b3e249.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea7c98fa.css",
+    "static/js/main.d3b3e249.js"
+  ]
+}
