@@ -7,7 +7,6 @@ import {
   todosFetch,
   todosDelete,
   todosPut,
-  
 } from "./features/todoSlice";
 
 function App() {
@@ -17,6 +16,10 @@ function App() {
 
   const dispatch = useDispatch();
 
+  const isCompleted = todos.filter((item) => item.completed);
+const isActive = todos.filter((item) => !item.completed);
+
+
   useEffect(() => {
     dispatch(todosFetch());
   }, [dispatch]);
@@ -25,13 +28,14 @@ function App() {
     if (text !== "") {
       dispatch(todosPost(text));
     }
+    
+
     setText("");
   };
 
   const todoRemove = (id) => {
     dispatch(todosDelete(id));
   };
-  
 
   const handleCheck = (id, completed) => {
     dispatch(todosPut({ id, completed }));
@@ -41,14 +45,17 @@ function App() {
     <div className="App">
       <div className="form_body">
         <form onSubmit={(e) => e.preventDefault()}>
-          {/* {new Date().toLocaleDateString()} */}
-          <h3>Список задач: {todos.length}</h3>
+          <div className="static">
+            <h4>Всего: {todos.length}</h4>
+            <h4>Завершено: {isCompleted.length}</h4>
+            <h4>Активные: {isActive.length}</h4>
+          </div>
           <input
             type="text"
             placeholder="Введите задачу"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            />
+          />
           <button onClick={addTodo}>Add todo</button>
         </form>
         <div>
@@ -56,17 +63,21 @@ function App() {
             return (
               <div className="task" key={item.id}>
                 <b>{index + 1})</b>
+
                 <input
                   type="checkbox"
                   checked={item.completed}
                   onChange={() => handleCheck(item.id, item.completed)}
                 />
-
-                <span className={item.completed ? "active" : ""}>
-                  {item.text}
-                </span>
-
-                <button className="btn" onClick={() => todoRemove(item.id)}>X</button>
+                <div className="content">
+                  <span>{item.date}</span>
+                  <span className={item.completed ? "active" : ""}>
+                    {item.text}
+                  </span>
+                </div>
+                <button className="btn" onClick={() => todoRemove(item.id)}>
+                  X
+                </button>
               </div>
             );
           })}

@@ -16,6 +16,7 @@ export const todosPost = createAsyncThunk("todos/post", async (text) => {
       id: uniqid(),
       text,
       completed: false,
+      date: new Date().toLocaleTimeString()
     }
   );
 
@@ -28,6 +29,7 @@ export const todosDelete = createAsyncThunk("todos/delete", async (id) => {
   );
   return data.id;
 });
+
 
 export const todosAllDelete = createAsyncThunk("todos/allDelete", async () => {
   const { data } = await axios(

@@ -11,7 +11,7 @@
 
 .form_body {
   border: 1px solid black;
-  width: 250px;
+  width: 330px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -22,11 +22,12 @@
 form {
   border: 1px solid black;
   text-align: center;
+  width: 320px;
 }
 
 .task {
   border: 1px solid black;
-  width: 240px;
+  width: 320px;
   display: flex;
   margin-top: 5px;
 }
@@ -37,4 +38,16 @@ form {
 
 span {
   margin-left: 5px;
+}
+
+
+.static {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.content {
+  display: flex;
+  justify-content: space-evenly;
+  width: 320px;
 }
