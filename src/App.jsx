@@ -11,11 +11,13 @@ import {
   todosFetch,
   todosDelete,
   todosPut,
+  todosEdit,
 } from "./features/todoSlice";
 
 function App() {
   const [text, setText] = useState("");
-  // const [textPut, setTextPut] = useState("");
+  const [edit, setEdit] = useState(false);
+  const [value, setValue] = useState('')
 
   const todos = useSelector((state) => state.todos);
 
@@ -45,9 +47,15 @@ function App() {
     dispatch(todosPut({ id, completed }));
   };
 
-  // const onClickEdit = (id) => {
-  //   dispatch(todosEdit(id))
-  // }
+  const onClickEdit = (id, text) => {
+    setEdit(id)
+    setValue(text)
+  }
+
+  const todoSave = (id, value) => {
+   dispatch(todosEdit({id, value}))
+   setEdit(false)
+  }
 
 
   return (
@@ -63,7 +71,7 @@ function App() {
             className="inp"
             type="text"
             placeholder="Введите задачу"
-            value={text}
+            value={text.length < 10 ? text : text.substring(0,10)}
             onChange={(e) => setText(e.target.value)}
           />
           <button className="btn_addtodo" onClick={addTodo}>Add todo</button>
@@ -79,13 +87,28 @@ function App() {
                   checked={item.completed}
                   onChange={() => handleCheck(item.id, item.completed)}
                 />
-                <div className="content">
-                  {/* <span>{item.date}</span> */}
-                  <span className={item.completed ? "active" : ""}>
-                    {item.text}
-                  </span>
-                </div>
-                <BsPencilFill className="pen" />
+                {edit === item.id ? (
+                  <div>
+                    <input
+                      onChange={(e) => setValue(e.target.value)}
+                      value={value}
+                    />
+                    <button className="btn_save" onClick={() => todoSave(item.id, value)}>
+                      Save
+                    </button>
+                  </div>
+                ) : (
+                  <div className="content">
+                    {/* <span>{item.date}</span> */}
+                    <span className={item.completed ? "active" : ""}>
+                      {item.text}
+                    </span>
+                  </div>
+                )}
+                <BsPencilFill
+                  className="pen"
+                  onClick={() => onClickEdit(item.id, item.text)}
+                />
                 <MdDelete className="btn" onClick={() => todoRemove(item.id)} />
               </div>
             );

@@ -46,18 +46,18 @@ export const todosPut = createAsyncThunk(
   }
 );
 
-// export const todosEdit = createAsyncThunk(
-//   "todos/edit",
-//   async ({ id, text }) => {
-//     const { data } = await axios.put(
-//       `https://63642ce67b209ece0f42316d.mockapi.io/todos/${id}`,
-//       {
-//         text: text,
-//       }
-//     );
-//     return data;
-//   }
-// );
+export const todosEdit = createAsyncThunk(
+  "todos/edit",
+  async ({id, text, value }) => {
+    const { data } = await axios.put(
+      `https://63642ce67b209ece0f42316d.mockapi.io/todos/${id}`,
+      {
+        text: value,
+      }
+    );
+    return data;
+  }
+);
 
 const initialState = {
   todos: [],
@@ -80,14 +80,15 @@ const todosSlice = createSlice({
       state.todos = state.todos.filter((el) => el.id !== action.payload);
     },
 
-    // [todosEdit.fulfilled]: (state, action) => {
-    //   state.todos = state.todos.map((obj) => {
-    //     if(obj.id === action.payload) {
-    //       obj.text = text
-    //     }
-    //     return obj
-    //   });
-    // },
+    [todosEdit.fulfilled]: (state, action) => {
+      state.todos = state.todos.map((obj) => {
+        if(obj.id === action.payload.id) {
+          obj.text = action.payload.text
+        }
+        return obj
+      });
+      console.log(action.payload)
+    },
 
     [todosPut.fulfilled]: (state, action) => {
       state.todos = state.todos.map((el) => {
