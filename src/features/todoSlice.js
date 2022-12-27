@@ -16,7 +16,7 @@ export const todosPost = createAsyncThunk("todos/post", async (text) => {
       id: uniqid(),
       text,
       completed: false,
-      date: new Date().toLocaleTimeString()
+      // date: new Date().toLocaleTimeString()
     }
   );
 
@@ -31,12 +31,7 @@ export const todosDelete = createAsyncThunk("todos/delete", async (id) => {
 });
 
 
-export const todosAllDelete = createAsyncThunk("todos/allDelete", async () => {
-  const { data } = await axios(
-    `https://63642ce67b209ece0f42316d.mockapi.io/todos`
-  );
-  return data
-});
+
 
 export const todosPut = createAsyncThunk(
   "todos/put",
@@ -50,6 +45,19 @@ export const todosPut = createAsyncThunk(
     return data.id;
   }
 );
+
+// export const todosEdit = createAsyncThunk(
+//   "todos/edit",
+//   async ({ id, text }) => {
+//     const { data } = await axios.put(
+//       `https://63642ce67b209ece0f42316d.mockapi.io/todos/${id}`,
+//       {
+//         text: text,
+//       }
+//     );
+//     return data;
+//   }
+// );
 
 const initialState = {
   todos: [],
@@ -71,6 +79,16 @@ const todosSlice = createSlice({
     [todosDelete.fulfilled]: (state, action) => {
       state.todos = state.todos.filter((el) => el.id !== action.payload);
     },
+
+    // [todosEdit.fulfilled]: (state, action) => {
+    //   state.todos = state.todos.map((obj) => {
+    //     if(obj.id === action.payload) {
+    //       obj.text = text
+    //     }
+    //     return obj
+    //   });
+    // },
+
     [todosPut.fulfilled]: (state, action) => {
       state.todos = state.todos.map((el) => {
         if (el.id === action.payload) {

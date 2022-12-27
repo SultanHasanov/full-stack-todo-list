@@ -20,20 +20,31 @@
   border-radius: 10px;
 }
 form {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   text-align: center;
   width: 320px;
 }
 
 .task {
-  border: 1px solid black;
+   border-radius: 3px;
   width: 320px;
   display: flex;
   margin-top: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(241, 240, 244, 0.674);
 }
 
 .btn {
-  margin-left: auto;
+  /* margin-left: auto; */
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+  font-size: 20px;
+  color: red;
+  background-color: rgba(221, 214, 214, 0.536);
+  border-radius: 3px;
+  
 }
 
 span {
@@ -50,4 +61,26 @@ span {
   display: flex;
   justify-content: space-evenly;
   width: 320px;
+}
+
+.pen {
+  color: green;
+  margin-right: 5px;
+  /* margin-top: 2px; */
+  cursor: pointer;
+  background-color: rgba(221, 214, 214, 0.536);
+  border-radius: 3px;
+  margin: 2px;
+   font-size: 20px;
+   padding: 2px;
+}
+
+.inp {
+  width: 230px;
+  height: 20px;
+  outline: none;
+}
+
+.btn_addtodo {
+  height: 26px;
 }
