@@ -18,6 +18,7 @@ function App() {
   const [text, setText] = useState("");
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState('')
+  const [hint, setHint] = useState(false)
 
   const todos = useSelector((state) => state.todos);
 
@@ -57,6 +58,7 @@ function App() {
    setEdit(false)
   }
 
+  
 
   return (
     <div className="App">
@@ -71,10 +73,16 @@ function App() {
             className="inp"
             type="text"
             placeholder="Введите задачу"
-            value={text.length < 10 ? text : text.substring(0,10)}
+            value={text.length < 10 ? text : text.substring(0, 10)}
             onChange={(e) => setText(e.target.value)}
           />
-          <button className="btn_addtodo" onClick={addTodo}>Add todo</button>
+          <button className="btn_addtodo" onClick={addTodo}>
+            Add todo
+          </button>
+          <span onClick={() => setHint(!hint)}>💡</span>
+          {hint && (
+            <span onClick={() => setHint(false)}>Не больше 10 символов</span>
+          )}
         </form>
         <div>
           {todos?.map((item, index) => {
@@ -90,10 +98,14 @@ function App() {
                 {edit === item.id ? (
                   <div>
                     <input
+                      className="inp_edit"
                       onChange={(e) => setValue(e.target.value)}
                       value={value}
                     />
-                    <button className="btn_save" onClick={() => todoSave(item.id, value)}>
+                    <button
+                      className="btn_save"
+                      onClick={() => todoSave(item.id, value)}
+                    >
                       Save
                     </button>
                   </div>
@@ -105,11 +117,14 @@ function App() {
                     </span>
                   </div>
                 )}
+                {!edit &&
+                <>
                 <BsPencilFill
                   className="pen"
                   onClick={() => onClickEdit(item.id, item.text)}
                 />
                 <MdDelete className="btn" onClick={() => todoRemove(item.id)} />
+                </> }
               </div>
             );
           })}

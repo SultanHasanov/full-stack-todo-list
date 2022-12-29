@@ -6,7 +6,7 @@
 .active {
   text-decoration: line-through;
   opacity: 0.3;
-  color: red;
+  color: grey;
 }
 
 .form_body {
@@ -23,6 +23,7 @@ form {
   /* border: 1px solid black; */
   text-align: center;
   width: 320px;
+
 }
 
 .task {
@@ -58,8 +59,8 @@ span {
 }
 
 .content {
-  display: flex;
-  justify-content: space-evenly;
+  /* display: flex;
+  justify-content: space-evenly; */
   width: 320px;
 }
 
@@ -83,4 +84,17 @@ span {
 
 .btn_addtodo {
   height: 26px;
+}
+
+.btn_save {
+  background-color: green;
+  color: white;
+  border: none;
+  height: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+} 
+
+.inp_edit {
+  outline: none;
 }
