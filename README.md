@@ -1,5 +1,5 @@
-<h2>git clone https://github.com/SultanHasanov/react-pizza.git</h2>
-<h2>npm i</h2>
-<h2>npm start</h2>
+<h3>git clone https://github.com/SultanHasanov/full-stack-todo-list.git</h3>
+<h3>npm i</h3>
+<h3>npm start</h3>
 <a href="https://sultanhasanov.github.io/full-stack-todo-list/">Посмотреть сайт</a>
 <img src='' />
