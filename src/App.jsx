@@ -73,7 +73,7 @@ function App() {
             className="inp"
             type="text"
             placeholder="Введите задачу"
-            value={text.length < 10 ? text : text.substring(0, 10)}
+            value={text.length < 10 ? text : text.substring(0, 20)}
             onChange={(e) => setText(e.target.value)}
           />
           <button className="btn_addtodo" onClick={addTodo}>
