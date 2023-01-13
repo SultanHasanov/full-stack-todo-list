@@ -17,8 +17,8 @@ import {
 function App() {
   const [text, setText] = useState("");
   const [edit, setEdit] = useState(false);
-  const [value, setValue] = useState('')
-  const [hint, setHint] = useState(false)
+  const [value, setValue] = useState("");
+  const [hint, setHint] = useState(false);
 
   const todos = useSelector((state) => state.todos);
 
@@ -32,10 +32,14 @@ function App() {
   }, [dispatch]);
 
   const addTodo = () => {
-    if (text !== "") {
+    if (
+      text
+        .split("")
+        .filter((item) => item !== " ")
+        .join("")
+    ) {
       dispatch(todosPost(text));
-    } 
-    
+    }
 
     setText("");
   };
@@ -49,16 +53,14 @@ function App() {
   };
 
   const onClickEdit = (id, text) => {
-    setEdit(id)
-    setValue(text)
-  }
+    setEdit(id);
+    setValue(text);
+  };
 
   const todoSave = (id, value) => {
-   dispatch(todosEdit({id, value}))
-   setEdit(false)
-  }
-
-  
+    dispatch(todosEdit({ id, value }));
+    setEdit(false);
+  };
 
   return (
     <div className="App">
@@ -79,9 +81,17 @@ function App() {
           <button className="btn_addtodo" onClick={addTodo}>
             Add todo
           </button>
-          <span onClick={() => setHint(!hint)}>💡</span>
+          <span style={{ cursor: "pointer" }} onClick={() => setHint(!hint)}>
+            💡
+          </span>
           {hint && (
-            <span onClick={() => setHint(false)}>Не больше 10 символов</span>
+            <span
+              style={{ cursor: "pointer" }}
+              className="span_text"
+              onClick={() => setHint(false)}
+            >
+              Не больше 20 символов
+            </span>
           )}
         </form>
         <div>
@@ -98,6 +108,7 @@ function App() {
                 {edit === item.id ? (
                   <div>
                     <input
+                      maxLength="20"
                       className="inp_edit"
                       onChange={(e) => setValue(e.target.value)}
                       value={value}
@@ -111,20 +122,30 @@ function App() {
                   </div>
                 ) : (
                   <div className="content">
-                    {/* <span>{item.date}</span> */}
-                    <span className={item.completed ? "active" : ""}>
+                    <span className="date">
+                      <p>{item.date}</p>
+                      <p>{item.dateTime}</p>
+                    </span>
+                    <span
+                      style={{ width: "100%", marginLeft: '15px' }}
+                      className={item.completed ? "active" : ""}
+                    >
                       {item.text}
                     </span>
                   </div>
                 )}
-                {!edit &&
-                <>
-                <BsPencilFill
-                  className="pen"
-                  onClick={() => onClickEdit(item.id, item.text)}
-                />
-                <MdDelete className="btn" onClick={() => todoRemove(item.id)} />
-                </> }
+                {!edit && (
+                  <>
+                    <BsPencilFill
+                      className="pen"
+                      onClick={() => onClickEdit(item.id, item.text)}
+                    />
+                    <MdDelete
+                      className="btn"
+                      onClick={() => todoRemove(item.id)}
+                    />
+                  </>
+                )}
               </div>
             );
           })}

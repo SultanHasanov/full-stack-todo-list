@@ -16,7 +16,8 @@ export const todosPost = createAsyncThunk("todos/post", async (text) => {
       id: uniqid(),
       text,
       completed: false,
-      // date: new Date().toLocaleTimeString()
+      date: new Date().toLocaleDateString(),
+      dateTime: new Date().toLocaleTimeString()
     }
   );
 
