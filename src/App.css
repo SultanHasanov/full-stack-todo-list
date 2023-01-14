@@ -11,8 +11,7 @@
   text-decoration: line-through;
   opacity: 0.4;
   color: red;
-  width: 100%;
-  text-align: center;
+  
 }
 
 .form_body {
@@ -54,9 +53,9 @@ form {
   border-radius: 3px;
 }
 
-span {
+/* span {
   margin-left: 5px;
-}
+} */
 
 .static {
   display: flex;

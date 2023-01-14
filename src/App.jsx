@@ -21,7 +21,7 @@ function App() {
   const [hint, setHint] = useState(false);
 
   const todos = useSelector((state) => state.todos);
-
+  // const newTodos = todos.sort((a, b) => a.completed - b.completed);
   const dispatch = useDispatch();
 
   const isCompleted = todos.filter((item) => item.completed);
@@ -40,7 +40,7 @@ function App() {
     ) {
       dispatch(todosPost(text));
     }
-
+    
     setText("");
   };
 
@@ -49,6 +49,8 @@ function App() {
   };
 
   const handleCheck = (id, completed) => {
+    
+    
     dispatch(todosPut({ id, completed }));
   };
 
@@ -64,6 +66,19 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={() => window.location.reload()}
+        style={{
+          width: "100px",
+          height: "50px",
+          backgroundColor: "#ffc107",
+          borderRadius: "10px",
+          border: "none",
+          cursor: "pointer",
+          marginRight: '5px'
+        }}
+      >
+        Обновить страницу
+      </button>
       <div className="form_body">
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="static">
@@ -127,7 +142,7 @@ function App() {
                       <p>{item.dateTime}</p>
                     </span>
                     <span
-                      style={{ width: "100%", marginLeft: '15px' }}
+                      style={{ width: "100%", marginLeft: "15px" }}
                       className={item.completed ? "active" : ""}
                     >
                       {item.text}
