@@ -66,19 +66,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => window.location.reload()}
-        style={{
-          width: "100px",
-          height: "50px",
-          backgroundColor: "#ffc107",
-          borderRadius: "10px",
-          border: "none",
-          cursor: "pointer",
-          marginRight: '5px'
-        }}
-      >
-        Обновить страницу
-      </button>
       <div className="form_body">
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="static">
@@ -109,7 +96,7 @@ function App() {
             </span>
           )}
         </form>
-        <div>
+        <div className="content_body">
           {todos?.map((item, index) => {
             return (
               <div className="task" key={item.id}>
@@ -165,6 +152,12 @@ function App() {
             );
           })}
         </div>
+      </div>
+      <div className="footer">
+        <button onClick={() => window.location.reload()} className="update">
+          Обновить страницу
+        </button>
+        <span style={{marginLeft: '10px', marginTop: '10px', color: 'green'}}>Нажмите на кнопку обновить, чтобы отсортировать завершенные задачи</span>
       </div>
     </div>
   );
