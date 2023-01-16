@@ -139,6 +139,14 @@ p {
 }
 
 .content_body {
-max-height: 300px;
+max-height: 230px;
 overflow: auto;
+}
+
+.inp_index {
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -100,13 +100,15 @@ function App() {
           {todos?.map((item, index) => {
             return (
               <div className="task" key={item.id}>
-                <b>{index + 1})</b>
+                <div className="inp_index">
+                  <b >{index + 1})</b>
 
-                <input
-                  type="checkbox"
-                  checked={item.completed}
-                  onChange={() => handleCheck(item.id, item.completed)}
-                />
+                  <input
+                    type="checkbox"
+                    checked={item.completed}
+                    onChange={() => handleCheck(item.id, item.completed)}
+                  />
+                </div>
                 {edit === item.id ? (
                   <div>
                     <input
