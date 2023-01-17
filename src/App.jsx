@@ -65,21 +65,21 @@ function App() {
     setEdit(false);
   };
 
-  // const downloadsTodo = () => {
-  //   fetch('https://63642ce67b209ece0f42316d.mockapi.io/todos').then(res => res.blob()).then(data => {
-  //     console.log(data)
-  //     let url = URL.createObjectURL(data)
-  //     let anchor = document.createElement('a')
-  //     anchor.href = url
-  //     anchor.download = 'document.txt'
-  //     document.body.append(anchor)
-  //     anchor.style = 'display: none'
-  //     anchor.click()
-  //     anchor.remove()
-  //     URL.revokeObjectUrl(url)
-  //   }
-  //   )
-  // }
+  const downloadsTodo = () => {
+    fetch('https://63642ce67b209ece0f42316d.mockapi.io/todos').then(res => res.blob()).then(data => {
+      console.log(data)
+      let url = URL.createObjectURL(data)
+      let anchor = document.createElement('a')
+      anchor.href = url
+      anchor.download = 'document.txt'
+      document.body.append(anchor)
+      anchor.style = 'display: none'
+      anchor.click()
+      anchor.remove()
+      URL.revokeObjectUrl(url)
+    }
+    )
+  }
 
 
   // const componentRef = useRef();
@@ -184,7 +184,7 @@ function App() {
         </button>
         <span style={{marginLeft: '10px', marginTop: '10px', color: 'green'}}>Нажмите на кнопку обновить, чтобы отсортировать завершенные задачи</span>
       </div>
-      <button onClick={() => window.print()} style={{padding: '10px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', marginTop: '10px'}}>Печать</button>
+      <button onClick={downloadsTodo} style={{padding: '10px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', marginTop: '10px'}}>Сохранить</button>
     </div>
   );
 }
