@@ -89,10 +89,17 @@ form {
   width: 230px;
   height: 20px;
   outline: none;
+  border-radius: 6px;
+  padding: 4px;
+  border-color: rgb(214, 204, 204);
 }
 
 .btn_addtodo {
-  height: 26px;
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 6px;
+  padding: 8px;
 }
 
 .btn_save {
