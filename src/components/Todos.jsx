@@ -15,16 +15,19 @@ const Todos = () => {
 
   const handleCheck = (id, completed) => {
     dispatch(todosPut({ id, completed }));
+    setDisText(false);
   };
 
   const todoSave = (id, value) => {
     dispatch(todosEdit({ id, value }));
     setEdit(false);
+    
   };
 
   const onClickEdit = (id, text) => {
     setEdit(id);
     setValue(text);
+    setDisText(false);
   };
 
   const todoRemove = (id, completed) => {

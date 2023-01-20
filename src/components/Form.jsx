@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { StateContext } from '../App';
 import { todosPost } from '../features/todoSlice';
 import Static from './Static'
 
 const Form = () => {
-    const {text, hint, setText, setHint, disText} = useContext(StateContext);
-    const todos = useSelector((state) => state.todos)
+    const {text, hint, setText, setHint, disText, setDisText} = useContext(StateContext);
+    // const todos = useSelector((state) => state.todos)
 
-    const todoText = todos.map((el) => el.text === text)
+    // const todoText = todos.map((el) => el.text === text)
     // console.log(todoText)
     // console.log(text);
     const dispatch = useDispatch()
@@ -18,13 +18,14 @@ const Form = () => {
       text
         .split("")
         .filter((item) => item !== " ")
-        .join("") && todoText
+        .join("") 
       
     ) {
       dispatch(todosPost(text));
     }
     
     setText("");
+    setDisText(false)
   };
 
     return (

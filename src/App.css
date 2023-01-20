@@ -38,7 +38,7 @@ form {
 
 .task {
   border-radius: 3px;
-  width: 350px;
+  width: 100%;
   display: flex;
   margin-top: 5px;
   justify-content: center;
@@ -151,6 +151,7 @@ p {
 }
 
 .content_body {
+  width: 360px;
 max-height: 230px;
 overflow: auto;
 }
