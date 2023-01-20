@@ -7,7 +7,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 .active {
@@ -17,15 +17,26 @@
 }
 
 .form_body {
-  border: 1px solid black;
+   clip-path: 
+    polygon(
+      0% 17%,     /* верхняя левая */
+      15% 0%,     /* верхняя левая */
+      95% 0%,    /* верхняя правая */
+      100% 0%,   /* верхняя правая */
+      100% 95%,  /* нижняя правая */
+      100% 100%,  /* нижняя правая */
+      0% 100%,   /* нижняя левая */
+      0 95%      /* нижняя левая */
+    );
+  /* border: 1px solid black; */
   width: 330px;
-  
+  border-radius: 75px 10px 10px 10px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border-radius: 10px;
+  background: #f1f3a2;
 }
 form {
   /* border: 1px solid black; */
@@ -158,3 +169,4 @@ overflow: auto;
   align-items: center;
   justify-content: space-between;
 }
+

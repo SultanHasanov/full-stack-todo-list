@@ -6,6 +6,7 @@ export const todosFetch = createAsyncThunk("todos/todosFetch", async () => {
   const { data } = await axios.get(
     "https://63642ce67b209ece0f42316d.mockapi.io/todos?sortBy=completed&order=asc"
   );
+  
   return data;
 });
 

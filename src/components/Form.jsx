@@ -37,7 +37,7 @@ const Form = () => {
           <button className="btn_addtodo" onClick={addTodo}>
             Add todo
           </button>
-          <span style={{ cursor: "pointer" }} onClick={() => setHint(!hint)}>
+          <span title='Подсказка' style={{ cursor: "pointer" }} onClick={() => setHint(!hint)}>
             💡
           </span>
           {hint && (

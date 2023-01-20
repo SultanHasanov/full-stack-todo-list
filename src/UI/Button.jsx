@@ -31,7 +31,7 @@ const Button = () => {
             marginTop: "10px",
           }}
         >
-          Сохранить
+          Download
         </button>
       </>
     );
