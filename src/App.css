@@ -17,17 +17,7 @@
 }
 
 .form_body {
-   clip-path: 
-    polygon(
-      0% 25%,     /* верхняя левая */
-      17% 0%,     /* верхняя левая */
-      95% 0%,    /* верхняя правая */
-      100% 0%,   /* верхняя правая */
-      100% 95%,  /* нижняя правая */
-      100% 100%,  /* нижняя правая */
-      0% 100%,   /* нижняя левая */
-      0 95%      /* нижняя левая */
-    );
+   
   /* border: 1px solid black; */
   width: 360px;
   border-radius: 75px 10px 10px 10px;
@@ -82,7 +72,8 @@ form {
   display: flex;
   align-items: center;
   width: 320px;
-}
+  }
+  
 
 .pen {
   color: green;
