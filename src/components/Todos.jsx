@@ -7,7 +7,7 @@ import { StateContext } from "../App";
 
 const Todos = () => {
   const todos = useSelector((state) => state.todos);
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState(true)
   
   const dispatch = useDispatch();
 

@@ -8,7 +8,9 @@ const Form = () => {
     const {text, hint, setText, setHint, disText} = useContext(StateContext);
     const todos = useSelector((state) => state.todos)
 
-    console.log(todos.text)
+    const todoText = todos.map((el) => el.text === text)
+    // console.log(todoText)
+    // console.log(text);
     const dispatch = useDispatch()
 
     const addTodo = () => {
@@ -16,7 +18,7 @@ const Form = () => {
       text
         .split("")
         .filter((item) => item !== " ")
-        .join("") 
+        .join("") && todoText
       
     ) {
       dispatch(todosPost(text));
