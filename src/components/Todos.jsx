@@ -8,9 +8,10 @@ import { StateContext } from "../App";
 const Todos = () => {
   const todos = useSelector((state) => state.todos);
   const [disabled, setDisabled] = useState(false)
+  
   const dispatch = useDispatch();
 
-  const { edit, value, setEdit, setValue } = useContext(StateContext);
+  const { edit, value, setEdit, setValue, disText, setDisText } = useContext(StateContext);
 
   const handleCheck = (id, completed) => {
     dispatch(todosPut({ id, completed }));
@@ -31,6 +32,10 @@ const Todos = () => {
       dispatch(todosDelete(id));
     }
     setDisabled(true)
+    if(!completed && disabled){
+      setDisText(!disText)
+    }
+    console.log(disText)
   };
 
   return (
@@ -69,7 +74,7 @@ const Todos = () => {
                   <p>{item.dateTime}</p>
                 </span>
                 <span
-                  style={{ width: "100%", marginLeft: "15px" }}
+                  style={{ width: "100%", marginLeft: "15px"}}
                   className={item.completed ? "active" : ""}
                 >
                   {item.text}
@@ -85,6 +90,7 @@ const Todos = () => {
                 />
 
                 <MdDelete
+                
                   disabled={disabled}
                   title="Удалить"
                   className="btn"

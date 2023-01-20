@@ -14,6 +14,7 @@ function App() {
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(false);
   const [text, setText] = useState("");
+  const [disText, setDisText] = useState(false);
   const dispatch = useDispatch();
   const stateObj = {
     edit,
@@ -24,6 +25,8 @@ function App() {
     setText,
     setEdit,
     setValue,
+    disText,
+    setDisText,
   };
 
   useEffect(() => {

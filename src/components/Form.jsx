@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StateContext } from '../App';
 import { todosPost } from '../features/todoSlice';
 import Static from './Static'
 
 const Form = () => {
-    const {text, hint, setText, setHint} = useContext(StateContext);
+    const {text, hint, setText, setHint, disText} = useContext(StateContext);
+    const todos = useSelector((state) => state.todos)
 
+    console.log(todos.text)
     const dispatch = useDispatch()
 
     const addTodo = () => {
@@ -14,10 +16,12 @@ const Form = () => {
       text
         .split("")
         .filter((item) => item !== " ")
-        .join("")
+        .join("") 
+      
     ) {
       dispatch(todosPost(text));
     }
+    
     setText("");
   };
 
@@ -37,9 +41,17 @@ const Form = () => {
           <button className="btn_addtodo" onClick={addTodo}>
             Add todo
           </button>
-          <span title='Подсказка' style={{ cursor: "pointer" }} onClick={() => setHint(!hint)}>
-            💡
-          </span>
+          {disText ? (
+            <span style={{color: 'red'}}>Удаляются только завершенные дела !</span>
+          ) : (
+            <span
+              title="Подсказка"
+              style={{ cursor: "pointer", fontSize: '17px' }}
+              onClick={() => setHint(!hint)}
+            >
+              💡
+            </span>
+          )}
           {hint && (
             <span
               style={{ cursor: "pointer" }}

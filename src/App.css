@@ -19,8 +19,8 @@
 .form_body {
    clip-path: 
     polygon(
-      0% 17%,     /* верхняя левая */
-      15% 0%,     /* верхняя левая */
+      0% 25%,     /* верхняя левая */
+      17% 0%,     /* верхняя левая */
       95% 0%,    /* верхняя правая */
       100% 0%,   /* верхняя правая */
       100% 95%,  /* нижняя правая */
@@ -29,7 +29,7 @@
       0 95%      /* нижняя левая */
     );
   /* border: 1px solid black; */
-  width: 330px;
+  width: 360px;
   border-radius: 75px 10px 10px 10px;
   display: flex;
   justify-content: center;
@@ -41,12 +41,14 @@
 form {
   /* border: 1px solid black; */
   text-align: center;
-  width: 320px;
+  width: 330px;
+  height: 115px;
+
 }
 
 .task {
   border-radius: 3px;
-  width: 320px;
+  width: 350px;
   display: flex;
   margin-top: 5px;
   justify-content: center;
@@ -97,7 +99,7 @@ form {
 }
 
 .inp {
-  width: 230px;
+  width: 242px;
   height: 20px;
   outline: none;
   border-radius: 6px;
