@@ -6,6 +6,7 @@ import Form from "./components/Form";
 import Button from "./UI/Button";
 import Footer from "./components/Footer";
 import Todos from "./components/Todos";
+// import NameTodos from "./components/NameTodos";
 
 export const StateContext = createContext();
 
@@ -15,6 +16,7 @@ function App() {
   const [hint, setHint] = useState(false);
   const [text, setText] = useState("");
   const [disText, setDisText] = useState(false);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const stateObj = {
     edit,
@@ -27,6 +29,8 @@ function App() {
     setValue,
     disText,
     setDisText,
+    count,
+    setCount,
   };
 
   useEffect(() => {
@@ -35,18 +39,24 @@ function App() {
 
   return (
     <div className="App">
-      <StateContext.Provider value={stateObj}>
-        <div className="form_body">
-          <Form />
-          <div className="content_body">
-            <Todos />
+      <div className="App_2">
+        <StateContext.Provider value={stateObj}>
+          <div style={{ width: "100%" }}>
+            <Form />
           </div>
-        </div>
-        <div className="footer">
-          <Footer />
-        </div>
-        <Button />
-      </StateContext.Provider>
+          {/* <NameTodos /> */}
+          
+          <div className="form_body">
+            <div className="content_body">
+              <Todos />
+            </div>
+          </div>
+          <div className="footer">
+            <Footer />
+          </div>
+          <Button />
+        </StateContext.Provider>
+      </div>
     </div>
   );
 }

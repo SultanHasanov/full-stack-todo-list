@@ -4,7 +4,7 @@ import uniqid from "uniqid";
 
 export const todosFetch = createAsyncThunk("todos/todosFetch", async () => {
   const { data } = await axios.get(
-    "https://63642ce67b209ece0f42316d.mockapi.io/todos?sortBy=completed&order=asc"
+    "https://63642ce67b209ece0f42316d.mockapi.io/todos"
   );
   
   return data;
@@ -33,8 +33,6 @@ export const todosDelete = createAsyncThunk("todos/delete", async (id) => {
 });
 
 
-
-
 export const todosPut = createAsyncThunk(
   "todos/put",
   async ({ completed, id }) => {
@@ -50,11 +48,12 @@ export const todosPut = createAsyncThunk(
 
 export const todosEdit = createAsyncThunk(
   "todos/edit",
-  async ({id, text, value }) => {
+  async ({id, value}) => {
     const { data } = await axios.put(
       `https://63642ce67b209ece0f42316d.mockapi.io/todos/${id}`,
       {
         text: value,
+        
       }
     );
     return data;
@@ -63,6 +62,7 @@ export const todosEdit = createAsyncThunk(
 
 const initialState = {
   todos: [],
+  cart: [],
   
 };
 
@@ -79,17 +79,19 @@ const todosSlice = createSlice({
       state.todos = action.payload;
     },
     [todosDelete.fulfilled]: (state, action) => {
-      state.todos = state.todos.filter((el) => el.id !== action.payload);
+      state.todos = state.todos.filter((el) => el.id !== action.payload );
+      
+  
     },
+   
 
     [todosEdit.fulfilled]: (state, action) => {
       state.todos = state.todos.map((obj) => {
-        if(obj.id === action.payload.id) {
-          obj.text = action.payload.text
+        if (obj.id === action.payload.id) {
+          obj.text = action.payload.text;
         }
-        return obj
+        return obj;
       });
-      console.log(action.payload)
     },
 
     [todosPut.fulfilled]: (state, action) => {

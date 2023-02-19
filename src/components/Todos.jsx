@@ -7,21 +7,36 @@ import { StateContext } from "../App";
 
 const Todos = () => {
   const todos = useSelector((state) => state.todos);
-  const [disabled, setDisabled] = useState(true)
-  
+
+  const [disabled, setDisabled] = useState(true);
+
   const dispatch = useDispatch();
 
-  const { edit, value, setEdit, setValue, disText, setDisText } = useContext(StateContext);
+  const {
+    count,
+    setCount,
+    edit,
+    value,
+    setEdit,
+    setValue,
+    disText,
+    setDisText,
+  } = useContext(StateContext);
 
   const handleCheck = (id, completed) => {
     dispatch(todosPut({ id, completed }));
     setDisText(false);
+
+    if (!completed) {
+      setCount(count + 1);
+    } else {
+      setCount(count - 1);
+    }
   };
 
   const todoSave = (id, value) => {
-    dispatch(todosEdit({ id, value }));
+    dispatch(todosEdit({ id, value}));
     setEdit(false);
-    
   };
 
   const onClickEdit = (id, text) => {
@@ -29,78 +44,84 @@ const Todos = () => {
     setValue(text);
     setDisText(false);
   };
-
-  const todoRemove = (id, completed) => {
-    if(completed){
+  const todoRemove = (item, id, completed) => {
+    if (completed) {
       dispatch(todosDelete(id));
     }
-    setDisabled(true)
-    if(!completed && disabled){
-      setDisText(!disText)
+    setDisabled(true);
+    if (!completed && disabled) {
+      setDisText(!disText);
     }
-    console.log(disText)
   };
 
   return (
     <>
-      {todos?.map((item, index) => {
+      {todos?.map((item) => {
         return (
           <div key={item.id} className="task">
-            <div className="inp_index">
-              <b>{index + 1})</b>
-              <input
-                title="Завершить задачу"
-                type="checkbox"
-                checked={item.completed}
-                onChange={() => handleCheck(item.id, item.completed)}
-              />
-            </div>
-            {edit === item.id ? (
-              <div key={item.id}>
+            <div className={item.completed ? "active" : "task_2"}>
+              {edit === item.id ? (
+                <div className="task_edit" key={item.id}>
+                  <textarea
+                    maxLength="70"
+                    className="inp_edit"
+                    onChange={(e) => setValue(e.target.value)}
+                    value={value}
+                  ></textarea>
+                  <button
+                    className="btn_save"
+                    onClick={() => todoSave(item.id, value)}
+                  >
+                    Save
+                  </button>
+                </div>
+              ) : (
+                <div key={item.id} className="content">
+                  <div className="task_text">
+                    <span style={{ marginRight: "7px" }}>
+                      <BsPencilFill
+                        title="Редактировать"
+                        className="pen"
+                        onClick={() => onClickEdit(item.id, item.text)}
+                      />
+                    </span>
+                    <span>{item.text}</span>
+                  </div>
+                  <MdDelete
+                    disabled={disabled}
+                    title="Удалить"
+                    className="btn"
+                    onClick={() => todoRemove(item, item.id, item.completed)}
+                  />
+                </div>
+              )}
+              <div className="task_main">
+                {item.completed ? <p>Активировать</p> : <p>Завершить задачу</p>}
                 <input
-                  maxLength="20"
-                  className="inp_edit"
-                  onChange={(e) => setValue(e.target.value)}
-                  value={value}
+                  title="Завершить задачу"
+                  type="checkbox"
+                  checked={item.completed}
+                  onChange={() => handleCheck(item.id, item.completed)}
+                  style={{ accentColor: "green" }}
                 />
-                <button
-                  className="btn_save"
-                  onClick={() => todoSave(item.id, value)}
-                >
-                  Save
-                </button>
               </div>
-            ) : (
-              <div key={item.id} className="content">
-                <span className="date">
+              <div className="task_date">
+                <div>
+                  <span>
+                    <b>Создан:</b>
+                  </span>
                   <p>{item.date}</p>
                   <p>{item.dateTime}</p>
-                </span>
-                <span
-                  style={{ width: "100%", marginLeft: "15px"}}
-                  className={item.completed ? "active" : ""}
-                >
-                  {item.text}
-                </span>
+                </div>
+                <div>
+                  <span>
+                    <b>Изменен:</b>
+                  </span>
+                  <p>{new Date().toLocaleDateString()}</p>
+                  <p>{new Date().toLocaleTimeString()}</p>
+                </div>
               </div>
-            )}
-            {!edit && (
-              <>
-                <BsPencilFill
-                  title="Редактировать"
-                  className="pen"
-                  onClick={() => onClickEdit(item.id, item.text)}
-                />
-
-                <MdDelete
-                
-                  disabled={disabled}
-                  title="Удалить"
-                  className="btn"
-                  onClick={() => todoRemove(item.id, item.completed)}
-                />
-              </>
-            )}
+            </div>
           </div>
         );
       })}
