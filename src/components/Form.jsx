@@ -26,7 +26,7 @@ const Form = () => {
           {/* <div className="static">
             <Static />
           </div> */}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", width: '98.5%' }}>
             <input
               className="inp"
               type="text"

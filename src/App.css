@@ -79,6 +79,9 @@ form {
   outline: none;
   padding: 4px;
   font-size: 16px;
+  border: 1px solid green;
+    color: green;
+    border-radius: 3px;
 }
 
 .btn_addtodo {
@@ -225,10 +228,13 @@ font-size: 10px;
 
 .task_text {
   display: flex;
-  width: 70%;
+  width: 220px;
 }
 
 .task_edit {
   display: flex;
 }
 
+textarea {
+  border-radius: 5px;
+}
