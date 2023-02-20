@@ -1,5 +1,5 @@
 ```
-<h3>git clone https://github.com/SultanHasanov/full-stack-todo-list.git</h3>
+git clone https://github.com/SultanHasanov/full-stack-todo-list.git
 ```
 <h3>npm i</h3>
 <h3>npm start</h3>
