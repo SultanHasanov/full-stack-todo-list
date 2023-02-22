@@ -63,7 +63,7 @@ const Todos = () => {
               {edit === item.id ? (
                 <div className="task_edit" key={item.id}>
                   <textarea
-                    maxLength="70"
+                    maxLength="150"
                     className="inp_edit"
                     onChange={(e) => setValue(e.target.value)}
                     value={value}
@@ -95,16 +95,8 @@ const Todos = () => {
                   />
                 </div>
               )}
-              <div className="task_main">
-                {item.completed ? <p>Активировать</p> : <p>Завершить задачу</p>}
-                <input
-                  title="Завершить задачу"
-                  type="checkbox"
-                  checked={item.completed}
-                  onChange={() => handleCheck(item.id, item.completed)}
-                  style={{ accentColor: "green" }}
-                />
-              </div>
+              {item.completed && <div className="close_body"><div className="close_task"></div></div>}
+
               <div className="task_date">
                 <div>
                   <span>
@@ -112,6 +104,15 @@ const Todos = () => {
                   </span>
                   <p>{item.date}</p>
                   <p>{item.dateTime}</p>
+                </div>
+                <div className="task_main">
+                  <input
+                    title="Завершить задачу"
+                    type="checkbox"
+                    checked={item.completed}
+                    onChange={() => handleCheck(item.id, item.completed)}
+                    style={{ accentColor: "green" }}
+                  />
                 </div>
                 <div>
                   <span>

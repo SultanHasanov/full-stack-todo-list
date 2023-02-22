@@ -31,7 +31,7 @@ const Form = () => {
               className="inp"
               type="text"
               placeholder="Введите задачу..."
-              value={text.length < 10 ? text : text.substring(0, 70)}
+              value={text.length < 10 ? text : text.substring(0, 150)}
               onChange={(e) => setText(e.target.value)}
             />
             <button className="btn_addtodo" onClick={addTodo}>

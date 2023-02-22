@@ -27,7 +27,7 @@
   border-radius: 10px;
   height: 200px;
   margin: 0 10px 10px 0;
-  
+  position: relative;
   /* text-decoration: line-through;
   opacity: 0.4; */
 }
@@ -111,7 +111,7 @@ form {
 
 .inp_edit {
   outline: none;
-  height: 50px;
+  height: 120px;
   width: 70%;
   margin-right: 5px;
 
@@ -190,22 +190,8 @@ hr {
   font-weight: bold;
 }
 
-.progress_inner {
- height: 100%;
-      border-radius: 3px;
-      width: 100%;
-      background: rgb(18, 231, 48);
-      transition: all 0.3s ease-in-out;
-      background: linear-gradient(90deg, rgba(18, 231, 48, 1) 0%, rgba(0, 212, 255, 1) 100%);
-  }
-  .progress {
-    margin-top: 10px;
-    width: 600px;
-  height: 30px;
-    border-radius: 3px;
-    background-color: rgb(232, 232, 232);
-    margin-bottom: 25px; 
-}
+
+  
 
 .task_main {
   display: flex;
@@ -237,4 +223,25 @@ font-size: 10px;
 
 textarea {
   border-radius: 5px;
+}
+
+.close_task {
+  background-image: url('https://pngimage.net/wp-content/uploads/2018/05/completed-png-2.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+background-repeat: no-repeat;
+background-size: contain;
+  width: 220px;
+  height: 134px; 
+  padding: 0;
+  background-color: transparent;
+  
+}
+
+.close_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 9;
 }
